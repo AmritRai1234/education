@@ -1,0 +1,455 @@
+/* Balance Scale */
+.balance-scale-wrap {
+  margin: var(--space-lg) 0;
+  text-align: center;
+}
+
+.balance-svg {
+  max-width: 420px;
+  margin: 0 auto;
+  display: block;
+}
+
+.balance-equation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-top: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+.balance-side {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.balance-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.8125rem;
+}
+
+.balance-status.balanced {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.balance-status.unbalanced {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+/* Number Line */
+.numberline-wrap {
+  margin: var(--space-lg) 0;
+  text-align: center;
+}
+
+.numberline-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+  font-weight: 500;
+}
+
+.numberline-svg {
+  max-width: 520px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Coordinate Plane */
+.coord-plane-wrap {
+  margin: var(--space-lg) 0;
+  display: flex;
+  justify-content: center;
+}
+
+.coord-svg {
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Split Layout: Big graph left, controls right */
+.graph-split-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.graph-split-left .coord-plane-wrap {
+  margin: 0;
+}
+
+.graph-split-left .coord-svg {
+  max-width: 100%;
+  width: 100%;
+}
+
+.graph-split-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding-top: var(--space-sm);
+}
+
+.graph-controls-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--brand);
+  margin-bottom: var(--space-xs);
+}
+
+.graph-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.graph-control-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .graph-split-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Equation Slider */
+.eq-slider-wrap {
+  margin: var(--space-lg) 0;
+  padding: var(--space-lg);
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+}
+
+.eq-slider-equation {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--brand);
+  margin-bottom: var(--space-md);
+  padding: var(--space-md);
+  background: var(--brand-bg);
+  border-radius: var(--radius-sm);
+}
+
+.eq-slider-control {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.eq-slider-label {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text-secondary);
+  min-width: 30px;
+}
+
+.eq-slider-input {
+  flex: 1;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--border-light);
+  border-radius: 3px;
+  outline: none;
+}
+
+.eq-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  background: var(--brand);
+  border-radius: 50%;
+  cursor: grab;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+  transition: transform 0.15s ease;
+}
+
+.eq-slider-input::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.eq-slider-input::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.1);
+}
+
+.eq-slider-value {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--brand);
+  min-width: 40px;
+  text-align: center;
+  background: var(--brand-bg);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.eq-slider-result {
+  text-align: center;
+  margin-top: var(--space-md);
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.eq-slider-result strong {
+  color: var(--success);
+  font-size: 1.125rem;
+}
+
+/* Equation Steps */
+.eq-steps-wrap {
+  margin: var(--space-lg) 0;
+}
+
+.eq-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  margin-bottom: 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+}
+
+.eq-step.visible {
+  animation: fadeInUp 0.4s ease both;
+}
+
+.eq-step.hidden {
+  display: none;
+}
+
+.eq-step.current {
+  background: var(--brand-bg);
+  border: 1px solid var(--brand-light);
+}
+
+.eq-step-number {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.eq-step-content {
+  flex: 1;
+}
+
+.eq-step-equation {
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.15rem;
+}
+
+.eq-step-action {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.eq-step-next {
+  margin-top: var(--space-sm);
+  margin-left: 44px;
+}
+
+/* Interactive Math Challenge */
+.math-interactive {
+  margin: var(--space-lg) 0;
+  padding: var(--space-xl);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--border-light);
+}
+
+.math-interactive-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--brand);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.math-interactive-title::before {
+  content: '✨';
+}
+
+/* Block Groups — Addition / Multiplication Visual */
+.block-groups-wrap {
+  margin: var(--space-lg) 0;
+}
+
+.block-groups-visual {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.block-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.block-group-label {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  min-width: 20px;
+  text-align: center;
+  margin-bottom: var(--space-xs);
+}
+
+.block-group-blocks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 200px;
+}
+
+.block-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: white;
+  font-weight: 700;
+  font-size: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  animation: scaleIn 0.3s ease both;
+  transition: transform 0.15s ease;
+}
+
+.block-item:hover {
+  transform: scale(1.1);
+}
+
+.block-group-op {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 0 var(--space-xs);
+}
+
+.block-groups-total {
+  margin-top: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-warm);
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+}
+
+.block-total-eq {
+  color: var(--text-secondary);
+}
+
+.block-total-val {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--success);
+}
+
+/* Fraction Circle */
+.fraction-circle-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: var(--space-lg) 0;
+}
+
+.fraction-svg {
+  width: 200px;
+  height: 200px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+}
+
+.fraction-label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* Multiplication Grid */
+.mult-grid-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+}
+
+.mult-grid-label {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.mult-grid {
+  display: grid;
+}
+
+.mult-grid-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.75rem;
+  animation: scaleIn 0.2s ease both;
+  transition: transform 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.mult-grid-cell:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.mult-grid-result {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.mult-grid-result strong {
+  color: var(--success);
+  font-size: 1.5rem;
+}

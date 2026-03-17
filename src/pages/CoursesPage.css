@@ -1,0 +1,144 @@
+.courses-page {
+  padding: var(--space-2xl) 0 var(--space-3xl);
+  min-height: 100vh;
+}
+
+.courses-header {
+  margin-bottom: var(--space-2xl);
+}
+
+.courses-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.courses-header p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+.course-track-section {
+  margin-bottom: var(--space-2xl);
+  padding: var(--space-xl);
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+}
+
+.course-track-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.course-track-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  font-size: 1.5rem;
+}
+
+.course-track-title {
+  font-size: 1.375rem;
+  font-weight: 700;
+}
+
+.course-track-tagline {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.course-track-progress {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.progress-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.course-section-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.course-section-sub {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.lesson-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lesson-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 0.875rem 1rem;
+  background: var(--bg-warm);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  color: inherit;
+}
+
+.lesson-card:hover {
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  transform: translateX(4px);
+}
+
+.lesson-card-num {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.lesson-card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson-card-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.lesson-card-steps {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.lesson-card-arrow {
+  margin-left: auto;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.lesson-card:hover .lesson-card-arrow {
+  opacity: 1;
+}
