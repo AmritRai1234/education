@@ -18,6 +18,7 @@ import { ArrowRight, CheckCircle, Lock, Sparkles, ArrowLeft, Trophy, Zap } from 
 import { getTrack } from '../data/lessons';
 import { isLessonComplete, getLessonProgress, getTrackProgress } from '../data/progress';
 import { FadeInUp, StaggerContainer, StaggerItem, ProgressRing } from '../components/Animations';
+import { TrackIcon } from '../components/TrackIcon';
 
 // Track color mapping
 const trackColors = {
@@ -288,10 +289,9 @@ export default function TrackPage() {
                     bg={colors.bg}
                     align="center"
                     justify="center"
-                    fontSize={{ base: '3xl', md: '4xl' }}
                     boxShadow={`0 8px 24px ${colors.ring}`}
                   >
-                    {track.icon}
+                    <TrackIcon trackId={track.id} size={40} />
                   </Flex>
                 </motion.div>
                 <Box>
@@ -371,9 +371,8 @@ export default function TrackPage() {
                         bg={colors.bg}
                         align="center"
                         justify="center"
-                        fontSize="lg"
                       >
-                        {track.icon}
+                        <TrackIcon trackId={track.id} size={20} />
                       </Flex>
                     </motion.div>
                     <Heading fontSize="xl" fontWeight="700" color="gray.900">

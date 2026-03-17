@@ -17,6 +17,7 @@ import { ArrowRight, CheckCircle, BookOpen, Trophy, Zap } from 'lucide-react';
 import { getAllTracks } from '../data/lessons';
 import { getTrackProgress, isLessonComplete, getLessonProgress } from '../data/progress';
 import { FadeInUp, StaggerContainer, StaggerItem } from '../components/Animations';
+import { TrackIcon } from '../components/TrackIcon';
 
 // Track color mapping
 const trackColors = {
@@ -193,9 +194,8 @@ function TrackSection({ track, index }) {
                   bg={colors.bg}
                   align="center"
                   justify="center"
-                  fontSize="2xl"
                 >
-                  {track.icon}
+                  <TrackIcon trackId={track.id} size={28} />
                 </Flex>
               </motion.div>
               <Box>

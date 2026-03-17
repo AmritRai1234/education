@@ -30,6 +30,7 @@ import {
 import { getAllTracks } from '../data/lessons';
 import { getStreak, getXP, getProgress, getLevel, getLevelProgress, getTotalLessonsCompleted } from '../data/progress';
 import { FadeInUp, StaggerContainer, StaggerItem, Float, AnimatedCounter, ProgressRing } from '../components/Animations';
+import { TrackIcon } from '../components/TrackIcon';
 
 // Track color mapping
 const trackColors = {
@@ -565,9 +566,8 @@ function TrackCard({ track, index }) {
                   bg={colors.bg}
                   align="center"
                   justify="center"
-                  fontSize="2xl"
                 >
-                  {track.icon}
+                  <TrackIcon trackId={track.id} size={28} />
                 </Flex>
               </motion.div>
               <Badge

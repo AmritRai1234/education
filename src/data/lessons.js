@@ -5,7 +5,7 @@ export const TRACKS = {
   python: {
     id: 'python',
     name: 'Python',
-    icon: '🐍',
+    icon: 'python',
     color: 'var(--python-green)',
     colorLight: 'var(--python-green-light)',
     colorBg: 'var(--python-green-bg)',
@@ -163,8 +163,8 @@ export const TRACKS = {
                 title: 'Making Decisions',
                 content: 'Programs need to make decisions. The `if` statement lets your code choose what to do based on a condition.',
                 visual: 'code',
-                code: 'temperature = 35\n\nif temperature > 30:\n    print("It\'s hot! ☀️")\nelse:\n    print("Nice weather! 🌤️")',
-                output: "It's hot! ☀️"
+                code: 'temperature = 35\n\nif temperature > 30:\n    print("It\'s hot!")\nelse:\n    print("Nice weather!")',
+                output: "It's hot!"
               },
               {
                 type: 'multiple-choice',
@@ -242,7 +242,7 @@ export const TRACKS = {
   rust: {
     id: 'rust',
     name: 'Rust',
-    icon: '🦀',
+    icon: 'rust',
     color: 'var(--rust-orange)',
     colorLight: 'var(--rust-orange-light)',
     colorBg: 'var(--rust-orange-bg)',
@@ -264,8 +264,8 @@ export const TRACKS = {
                 title: 'Welcome to Rust',
                 content: 'Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety. Let\'s start with the basics.',
                 visual: 'code',
-                code: 'fn main() {\n    println!("Hello, Rust! 🦀");\n}',
-                output: 'Hello, Rust! 🦀'
+                code: 'fn main() {\n    println!("Hello, Rust!");\n}',
+                output: 'Hello, Rust!'
               },
               {
                 type: 'multiple-choice',
@@ -293,7 +293,7 @@ export const TRACKS = {
                 title: 'Variables in Rust',
                 content: 'Rust variables are **immutable by default** — once set, they can\'t change. This prevents entire categories of bugs!',
                 visual: 'code',
-                code: 'fn main() {\n    let name = "Ferris";\n    let mut age = 5;  // mut = mutable\n    age = 6;  // ✅ This works because of mut\n    println!("{} is {} years old", name, age);\n}',
+                code: 'fn main() {\n    let name = "Ferris";\n    let mut age = 5;  // mut = mutable\n    age = 6;  // OK - works because of mut\n    println!("{} is {} years old", name, age);\n}',
                 output: 'Ferris is 6 years old'
               }
             ]
@@ -307,7 +307,7 @@ export const TRACKS = {
                 title: 'Rust\'s Superpower',
                 content: '**Ownership** is what makes Rust special. Every value has exactly one owner, and when the owner goes out of scope, the value is dropped. No garbage collector needed!',
                 visual: 'code',
-                code: 'fn main() {\n    let s1 = String::from("hello");\n    let s2 = s1;  // s1 is MOVED to s2\n    // println!("{}", s1); // ❌ ERROR! s1 no longer valid\n    println!("{}", s2);  // ✅ s2 owns the string\n}',
+                code: 'fn main() {\n    let s1 = String::from("hello");\n    let s2 = s1;  // s1 is MOVED to s2\n    // println!("{}", s1); // ERROR! s1 no longer valid\n    println!("{}", s2);  // OK - s2 owns the string\n}',
                 output: 'hello'
               },
               {
@@ -328,7 +328,7 @@ export const TRACKS = {
                 title: 'Borrowing',
                 content: 'If you want to use a value without taking ownership, you can **borrow** it with a reference (&).',
                 visual: 'code',
-                code: 'fn greet(name: &String) {\n    println!("Hello, {}!", name);\n}\n\nfn main() {\n    let name = String::from("Alice");\n    greet(&name);  // borrow, don\'t move\n    println!("Still own: {}", name);  // ✅ still valid!\n}',
+                code: 'fn greet(name: &String) {\n    println!("Hello, {}!", name);\n}\n\nfn main() {\n    let name = String::from("Alice");\n    greet(&name);  // borrow, don\'t move\n    println!("Still own: {}", name);  // OK - still valid!\n}',
                 output: 'Hello, Alice!\nStill own: Alice'
               }
             ]
@@ -379,7 +379,7 @@ export const TRACKS = {
                 type: 'fill-code',
                 title: 'Write a Match',
                 content: 'Complete the match to handle the default case:',
-                template: 'match color {\n    "red" => println!("🔴"),\n    "blue" => println!("🔵"),\n    ___ => println!("❓"),\n}',
+                template: 'match color {\n    "red" => println!("Red"),\n    "blue" => println!("Blue"),\n    ___ => println!("Unknown"),\n}',
                 answer: '_',
                 hint: 'What wildcard catches all remaining patterns in a match?'
               }
@@ -393,7 +393,7 @@ export const TRACKS = {
   react: {
     id: 'react',
     name: 'React',
-    icon: '⚛️',
+    icon: 'react',
     color: 'var(--react-blue)',
     colorLight: 'var(--react-blue-light)',
     colorBg: 'var(--react-blue-bg)',
@@ -415,8 +415,8 @@ export const TRACKS = {
                 title: 'Building Blocks of UI',
                 content: 'React apps are made of **components** — reusable pieces of UI. Think of them like LEGO bricks: each one is independent, but they snap together to build something complex.',
                 visual: 'code',
-                code: 'function Welcome() {\n  return <h1>Hello, React! ⚛️</h1>;\n}\n\n// Use it like an HTML tag:\n// <Welcome />',
-                output: 'Hello, React! ⚛️'
+                code: 'function Welcome() {\n  return <h1>Hello, React!</h1>;\n}\n\n// Use it like an HTML tag:\n// <Welcome />',
+                output: 'Hello, React!'
               },
               {
                 type: 'multiple-choice',
@@ -512,8 +512,8 @@ export const TRACKS = {
                 title: 'Responding to User Actions',
                 content: 'React handles events similarly to HTML, but uses camelCase naming and passes functions instead of strings.',
                 visual: 'code',
-                code: 'function ToggleButton() {\n  const [on, setOn] = useState(false);\n\n  return (\n    <button\n      onClick={() => setOn(!on)}\n      style={{\n        background: on ? "#10b981" : "#ef4444",\n        color: "white",\n        padding: "12px 24px",\n        borderRadius: "8px",\n      }}\n    >\n      {on ? "ON ✅" : "OFF ❌"}\n    </button>\n  );\n}',
-                output: '[OFF ❌]'
+                code: 'function ToggleButton() {\n  const [on, setOn] = useState(false);\n\n  return (\n    <button\n      onClick={() => setOn(!on)}\n      style={{\n        background: on ? "#10b981" : "#ef4444",\n        color: "white",\n        padding: "12px 24px",\n        borderRadius: "8px",\n      }}\n    >\n      {on ? "ON" : "OFF"}\n    </button>\n  );\n}',
+                output: '[OFF]'
               },
               {
                 type: 'multiple-choice',
@@ -533,7 +533,7 @@ export const TRACKS = {
   c: {
     id: 'c',
     name: 'C',
-    icon: '⚙️',
+    icon: 'c',
     color: 'var(--c-red)',
     colorLight: 'var(--c-red-light)',
     colorBg: 'var(--c-red-bg)',
@@ -673,7 +673,7 @@ export const TRACKS = {
   algebra: {
     id: 'algebra',
     name: 'Algebra',
-    icon: '📐',
+    icon: 'algebra',
     color: 'var(--algebra-purple)',
     colorLight: 'var(--algebra-purple-light)',
     colorBg: 'var(--algebra-purple-bg)',
@@ -722,7 +722,7 @@ export const TRACKS = {
                 equationSteps: [
                   { equation: 'x + 5 = 12', action: 'Start with the equation' },
                   { equation: 'x + 5 - 5 = 12 - 5', action: 'Subtract 5 from both sides' },
-                  { equation: 'x = 7', action: '✅ x is isolated!' }
+                  { equation: 'x = 7', action: 'Solved! x is isolated.' }
                 ]
               },
               {
@@ -773,7 +773,7 @@ export const TRACKS = {
                   { equation: '2x + 3 - 3 = 11 - 3', action: 'Subtract 3 from both sides' },
                   { equation: '2x = 8', action: 'Simplify' },
                   { equation: '2x ÷ 2 = 8 ÷ 2', action: 'Divide both sides by 2' },
-                  { equation: 'x = 4', action: '✅ Solved!' }
+                  { equation: 'x = 4', action: 'Solved!' }
                 ]
               },
               {
@@ -794,7 +794,7 @@ export const TRACKS = {
                   { equation: '5x - 3x + 2 = 10', action: 'Subtract 3x from both sides' },
                   { equation: '2x + 2 = 10', action: 'Combine like terms' },
                   { equation: '2x = 8', action: 'Subtract 2 from both sides' },
-                  { equation: 'x = 4', action: '✅ Solved!' }
+                  { equation: 'x = 4', action: 'Solved!' }
                 ]
               },
               {
@@ -941,9 +941,9 @@ export const TRACKS = {
                 content: 'To solve x² + 5x + 6 = 0, we factor it into two brackets:',
                 equationSteps: [
                   { equation: 'x² + 5x + 6 = 0', action: 'Find two numbers that multiply to 6 and add to 5' },
-                  { equation: '(x + 2)(x + 3) = 0', action: '2 × 3 = 6 and 2 + 3 = 5 ✓' },
+                  { equation: '(x + 2)(x + 3) = 0', action: '2 x 3 = 6 and 2 + 3 = 5' },
                   { equation: 'x + 2 = 0  or  x + 3 = 0', action: 'If a product is 0, one factor must be 0' },
-                  { equation: 'x = -2  or  x = -3', action: '✅ Two solutions!' }
+                  { equation: 'x = -2  or  x = -3', action: 'Two solutions!' }
                 ]
               },
               {
@@ -978,7 +978,7 @@ export const TRACKS = {
   arithmetic: {
     id: 'arithmetic',
     name: 'Arithmetic',
-    icon: '🧮',
+    icon: 'arithmetic',
     color: 'var(--arith-blue)',
     colorLight: 'var(--arith-blue-light)',
     colorBg: 'var(--arith-blue-bg)',
