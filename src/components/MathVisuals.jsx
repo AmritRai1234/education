@@ -93,7 +93,7 @@ export function BalanceScale({ leftItems, rightItems, onBalance, solved }) {
         {balanced && (
           <g>
             <circle cx="200" cy="80" r="14" fill="#10b981" style={{ animation: 'scaleIn 0.4s ease' }} />
-            <text x="200" y="85" textAnchor="middle" fill="white" fontSize="14" fontWeight="700">✓</text>
+            <path d="M195 80 L198 84 L206 74" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
           </g>
         )}
       </svg>
@@ -103,7 +103,7 @@ export function BalanceScale({ leftItems, rightItems, onBalance, solved }) {
           {leftItems.map(i => i.label).join(' + ')} = {leftTotal}
         </span>
         <span className={`balance-status ${balanced ? 'balanced' : 'unbalanced'}`}>
-          {balanced ? '⚖️ Balanced!' : diff > 0 ? '← Heavier on left' : '→ Heavier on right'}
+          {balanced ? 'Balanced!' : diff > 0 ? 'Heavier on left' : 'Heavier on right'}
         </span>
         <span className="balance-side">
           {rightItems.map(i => i.label).join(' + ')} = {rightTotal}

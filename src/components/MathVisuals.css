@@ -301,7 +301,7 @@
 }
 
 .math-interactive-title::before {
-  content: '✨';
+  content: '';
 }
 
 /* Block Groups — Addition / Multiplication Visual */

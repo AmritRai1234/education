@@ -1,15 +1,29 @@
 import { useState } from 'react';
-import './PlaygroundPage.css';
+import {
+  Box,
+  Container,
+  Flex,
+  Grid,
+  Heading,
+  Text,
+  VStack,
+  HStack,
+  Badge,
+  Button,
+  Textarea,
+} from '@chakra-ui/react';
+import { Play, Trash2, Code, Terminal } from 'lucide-react';
 
 const TEMPLATES = {
   python: {
     label: 'Python',
-    icon: '🐍',
+    icon: '{ }',
+    color: 'green',
     code: `# Python Playground
 # Try editing this code!
 
 def greet(name):
-    return f"Hello, {name}! 👋"
+    return f"Hello, {name}!"
 
 message = greet("World")
 print(message)
@@ -17,7 +31,7 @@ print(message)
 # Try a loop
 for i in range(5):
     print(f"  Count: {i}")`,
-    output: `Hello, World! 👋
+    output: `Hello, World!
   Count: 0
   Count: 1
   Count: 2
@@ -26,7 +40,8 @@ for i in range(5):
   },
   rust: {
     label: 'Rust',
-    icon: '🦀',
+    icon: '{ }',
+    color: 'orange',
     code: `// Rust Playground
 // Explore Rust's type system!
 
@@ -56,7 +71,8 @@ fib(9) = 34`,
   },
   react: {
     label: 'React',
-    icon: '⚛️',
+    icon: '</>',
+    color: 'blue',
     code: `// React Playground
 // Build interactive UIs!
 
@@ -84,7 +100,8 @@ export default Counter;`,
   },
   c: {
     label: 'C',
-    icon: '⚙️',
+    icon: '*',
+    color: 'gray',
     code: `// C Playground
 // See how memory works!
 
@@ -108,7 +125,7 @@ int main() {
   *(ptr+2) = 30  (addr: 0x7ffd00001008)
   *(ptr+3) = 40  (addr: 0x7ffd0000100c)
   *(ptr+4) = 50  (addr: 0x7ffd00001010)`,
-  }
+  },
 };
 
 export default function PlaygroundPage() {
@@ -126,15 +143,14 @@ export default function PlaygroundPage() {
   const runCode = () => {
     setRunning(true);
     setOutput('');
-    
-    // Simulate execution with a typing effect
+
     const template = TEMPLATES[lang];
     let i = 0;
     const chars = template.output.split('');
-    
+
     const interval = setInterval(() => {
       if (i < chars.length) {
-        setOutput(prev => prev + chars[i]);
+        setOutput((prev) => prev + chars[i]);
         i++;
       } else {
         clearInterval(interval);
@@ -144,72 +160,261 @@ export default function PlaygroundPage() {
   };
 
   return (
-    <div className="playground-page">
-      <div className="playground-container">
+    <Box bg="gray.50" minH="100vh" py={{ base: 6, md: 10 }}>
+      <Container maxW="6xl">
         {/* Header */}
-        <div className="playground-header animate-in">
-          <div>
-            <h1>Code Playground</h1>
-            <p>Write, run, and experiment with code.</p>
-          </div>
-          <div className="lang-tabs">
-            {Object.entries(TEMPLATES).map(([key, t]) => (
-              <button
+        <VStack gap={4} textAlign="center" mb={8}>
+          <Badge
+            bg="purple.50"
+            color="purple.600"
+            px={4}
+            py={1.5}
+            borderRadius="full"
+            fontWeight="600"
+            fontSize="sm"
+          >
+            <HStack gap={1.5}>
+              <Code size={14} />
+              <span>Code Playground</span>
+            </HStack>
+          </Badge>
+          <Heading
+            fontSize={{ base: '2xl', md: '3xl' }}
+            fontWeight="700"
+            color="gray.900"
+          >
+            Write, run, and experiment
+          </Heading>
+          <Text color="gray.600" fontSize="lg" maxW="500px">
+            A sandbox to practice and test your code in any language.
+          </Text>
+        </VStack>
+
+        {/* Language Tabs */}
+        <Flex
+          bg="white"
+          borderRadius="2xl"
+          border="1px solid"
+          borderColor="gray.100"
+          p={2}
+          gap={2}
+          mb={6}
+          flexWrap="wrap"
+          justify="center"
+        >
+          {Object.entries(TEMPLATES).map(([key, t]) => {
+            const isActive = lang === key;
+            return (
+              <Button
                 key={key}
-                className={`lang-tab ${lang === key ? 'active' : ''}`}
                 onClick={() => switchLang(key)}
+                bg={isActive ? `${t.color}.50` : 'transparent'}
+                color={isActive ? `${t.color}.600` : 'gray.600'}
+                border="2px solid"
+                borderColor={isActive ? `${t.color}.200` : 'transparent'}
+                borderRadius="xl"
+                px={5}
+                py={2}
+                fontWeight="600"
+                fontSize="sm"
+                _hover={{
+                  bg: isActive ? `${t.color}.50` : 'gray.50',
+                }}
+                transition="all 0.2s"
               >
-                <span>{t.icon}</span>
-                <span>{t.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
+                <HStack gap={2}>
+                  <Text fontFamily="mono" fontWeight="700">
+                    {t.icon}
+                  </Text>
+                  <span>{t.label}</span>
+                </HStack>
+              </Button>
+            );
+          })}
+        </Flex>
 
         {/* Editor */}
-        <div className="playground-editor-wrap animate-in animate-in-delay-1">
-          <div className="editor-panel">
-            <div className="panel-header">
-              <div className="code-dots">
-                <span className="dot red"></span>
-                <span className="dot yellow"></span>
-                <span className="dot green"></span>
-              </div>
-              <span className="panel-label">{TEMPLATES[lang].icon} {TEMPLATES[lang].label}</span>
-              <button
-                className="run-btn"
+        <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr' }} gap={6}>
+          {/* Code Panel */}
+          <Box
+            bg="gray.900"
+            borderRadius="2xl"
+            overflow="hidden"
+            boxShadow="0 20px 40px rgba(0, 0, 0, 0.1)"
+          >
+            {/* Header */}
+            <Flex
+              bg="gray.800"
+              px={5}
+              py={3}
+              align="center"
+              justify="space-between"
+            >
+              <HStack gap={2}>
+                <Flex gap={2}>
+                  <Box w={3} h={3} borderRadius="full" bg="red.400" />
+                  <Box w={3} h={3} borderRadius="full" bg="yellow.400" />
+                  <Box w={3} h={3} borderRadius="full" bg="green.400" />
+                </Flex>
+                <Text color="gray.500" fontSize="sm" fontFamily="mono" ml={2}>
+                  {TEMPLATES[lang].label.toLowerCase()}_playground
+                </Text>
+              </HStack>
+              <Button
                 onClick={runCode}
                 disabled={running}
+                bg="green.500"
+                color="white"
+                size="sm"
+                borderRadius="lg"
+                fontWeight="600"
+                _hover={{ bg: 'green.600' }}
+                _disabled={{ opacity: 0.6, cursor: 'not-allowed' }}
               >
-                {running ? '⏳ Running...' : '▶ Run Code'}
-              </button>
-            </div>
-            <textarea
-              className="code-editor"
-              value={code}
-              onChange={e => setCode(e.target.value)}
-              spellCheck={false}
-            />
-          </div>
+                <HStack gap={1.5}>
+                  <Play size={14} fill="currentColor" />
+                  <span>{running ? 'Running...' : 'Run'}</span>
+                </HStack>
+              </Button>
+            </Flex>
 
-          <div className="output-panel">
-            <div className="panel-header output-header">
-              <span className="panel-label">Output</span>
+            {/* Code Editor */}
+            <Box p={0}>
+              <Textarea
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
+                fontFamily="mono"
+                fontSize="sm"
+                lineHeight="1.7"
+                bg="transparent"
+                color="gray.100"
+                border="none"
+                borderRadius="0"
+                resize="none"
+                minH="400px"
+                p={5}
+                _focus={{ outline: 'none', boxShadow: 'none' }}
+                _placeholder={{ color: 'gray.600' }}
+                spellCheck={false}
+              />
+            </Box>
+          </Box>
+
+          {/* Output Panel */}
+          <Box
+            bg="white"
+            borderRadius="2xl"
+            border="1px solid"
+            borderColor="gray.200"
+            overflow="hidden"
+          >
+            {/* Header */}
+            <Flex
+              bg="gray.50"
+              px={5}
+              py={3}
+              align="center"
+              justify="space-between"
+              borderBottom="1px solid"
+              borderColor="gray.200"
+            >
+              <HStack gap={2}>
+                <Terminal size={16} color="#6b7280" />
+                <Text color="gray.700" fontSize="sm" fontWeight="600">
+                  Output
+                </Text>
+              </HStack>
               {output && (
-                <button
-                  className="clear-btn"
+                <Button
                   onClick={() => setOutput('')}
+                  size="sm"
+                  variant="ghost"
+                  color="gray.500"
+                  _hover={{ color: 'gray.700', bg: 'gray.100' }}
                 >
-                  Clear
-                </button>
+                  <HStack gap={1}>
+                    <Trash2 size={14} />
+                    <span>Clear</span>
+                  </HStack>
+                </Button>
               )}
-            </div>
-            <pre className="output-content">
-              {output || <span className="output-placeholder">Click "Run Code" to see output...</span>}
-            </pre>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Flex>
+
+            {/* Output Content */}
+            <Box
+              p={5}
+              minH="400px"
+              fontFamily="mono"
+              fontSize="sm"
+              lineHeight="1.7"
+              bg="gray.900"
+            >
+              {output ? (
+                <Text color="green.400" whiteSpace="pre-wrap">
+                  {output}
+                </Text>
+              ) : (
+                <Flex
+                  h="100%"
+                  minH="350px"
+                  align="center"
+                  justify="center"
+                  direction="column"
+                  gap={3}
+                >
+                  <Box
+                    w={12}
+                    h={12}
+                    borderRadius="xl"
+                    bg="gray.800"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <Play size={24} color="#6b7280" />
+                  </Box>
+                  <Text color="gray.500" textAlign="center">
+                    Click "Run" to see output
+                  </Text>
+                </Flex>
+              )}
+            </Box>
+          </Box>
+        </Grid>
+
+        {/* Tips Section */}
+        <Box mt={10} p={6} bg="white" borderRadius="2xl" border="1px solid" borderColor="gray.100">
+          <Heading fontSize="lg" fontWeight="600" color="gray.900" mb={4}>
+            Tips
+          </Heading>
+          <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={6}>
+            <VStack align="flex-start" gap={2}>
+              <Text fontWeight="600" color="gray.800" fontSize="sm">
+                Experiment freely
+              </Text>
+              <Text color="gray.600" fontSize="sm">
+                This is a sandbox - try different code, make mistakes, and learn!
+              </Text>
+            </VStack>
+            <VStack align="flex-start" gap={2}>
+              <Text fontWeight="600" color="gray.800" fontSize="sm">
+                Switch languages
+              </Text>
+              <Text color="gray.600" fontSize="sm">
+                Use the tabs above to switch between Python, Rust, React, and C.
+              </Text>
+            </VStack>
+            <VStack align="flex-start" gap={2}>
+              <Text fontWeight="600" color="gray.800" fontSize="sm">
+                Practice concepts
+              </Text>
+              <Text color="gray.600" fontSize="sm">
+                Reinforce what you learn in lessons by writing your own code here.
+              </Text>
+            </VStack>
+          </Grid>
+        </Box>
+      </Container>
+    </Box>
   );
 }
